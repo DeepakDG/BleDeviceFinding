@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Sun Jul 31 11:58:17 IST 2022
+0.base=C\:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out
+0.path=classes.dex
+count=1
+0.baseType=DIRECTORY
+0.set=DEX
