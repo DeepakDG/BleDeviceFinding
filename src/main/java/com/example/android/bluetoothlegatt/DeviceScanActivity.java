@@ -247,7 +247,8 @@ public class DeviceScanActivity extends AppCompatActivity {
                 } else {
                     // permissions not granted
                     // DO NOT PERFORM THE TASK, it will fail/crash
-                    Toast.makeText(getApplicationContext(),"Permission Not granted",Toast.LENGTH_LONG).show();
+                    Log.d("Permission Not Granted", "ELSE");
+//                    Toast.makeText(getApplicationContext(),"Permission Not granted",Toast.LENGTH_LONG).show();
                 }
                 break;
             default:
