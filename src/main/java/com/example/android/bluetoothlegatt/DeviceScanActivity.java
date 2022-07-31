@@ -44,7 +44,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +115,6 @@ public class DeviceScanActivity extends AppCompatActivity {
 
 //        showCameraPreview();
     }
-
 
 
 //    private String[] getRequiredPermissions() {
@@ -218,9 +216,10 @@ public class DeviceScanActivity extends AppCompatActivity {
         int bluetoothAdminGranted = checkSelfPermission(Manifest.permission.BLUETOOTH_ADMIN);
         int bluetoothScan = checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN);
         int bluetoothConnect = checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT);
+        int bluetoothPrivileged = checkSelfPermission(Manifest.permission.BLUETOOTH_PRIVILEGED);
 
         if (bluetoothGranted == PackageManager.PERMISSION_GRANTED &&
-                bluetoothAdminGranted == PackageManager.PERMISSION_GRANTED && bluetoothScan == PackageManager.PERMISSION_GRANTED && bluetoothConnect == PackageManager.PERMISSION_GRANTED) {
+                bluetoothAdminGranted == PackageManager.PERMISSION_GRANTED && bluetoothScan == PackageManager.PERMISSION_GRANTED && bluetoothConnect == PackageManager.PERMISSION_GRANTED && bluetoothPrivileged == PackageManager.PERMISSION_GRANTED) {
             granted = true;
         }
 
@@ -233,7 +232,8 @@ public class DeviceScanActivity extends AppCompatActivity {
                 Manifest.permission.BLUETOOTH,
                 Manifest.permission.BLUETOOTH_ADMIN,
                 Manifest.permission.BLUETOOTH_SCAN,
-                Manifest.permission.BLUETOOTH_CONNECT
+                Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.BLUETOOTH_PRIVILEGED
         };
         requestPermissions(permissions, PERMISSION_ASK);
     }
@@ -242,11 +242,12 @@ public class DeviceScanActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_ASK:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED && grantResults[3] == PackageManager.PERMISSION_GRANTED  && grantResults[4] == PackageManager.PERMISSION_GRANTED) {
                     scanLeDevice(true);
                 } else {
                     // permissions not granted
                     // DO NOT PERFORM THE TASK, it will fail/crash
+                    Toast.makeText(getApplicationContext(),"Permission Not granted",Toast.LENGTH_LONG).show();
                 }
                 break;
             default:
@@ -333,7 +334,7 @@ public class DeviceScanActivity extends AppCompatActivity {
         public void onScanFailed(int errorCode) {
             super.onScanFailed(errorCode);
             Log.d("SCanned Failed ", String.valueOf(errorCode));
-            Toast.makeText(getApplicationContext(), "onScanFailed"+String.valueOf(errorCode), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "onScanFailed" + String.valueOf(errorCode), Toast.LENGTH_LONG).show();
         }
     };
 

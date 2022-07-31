@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:1-57:12
-INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:1-57:12
-INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:1-57:12
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:1-59:12
+INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:1-59:12
+INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:1-59:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\80f0739a428115175855a9b9bb2a03d6\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\6f5d82f71dff9dab60ae6f6aee6a87d7\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\2b72ed254ff8d94d87a4c085565374bb\AndroidManifest.xml:17:1-22:12
@@ -30,16 +30,18 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\ACER\AppData\
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\d2fd1386c2b7dce0b8a2939a56eb12dd\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\91af7cc57d362ca25dccb7f001337a78\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\da43bd9fa1f93b249cefee2508b6c5b9\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:1-57:12
-INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:1-57:12
+INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:1-59:12
+INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:1-59:12
 	package
 		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:21:5-50
 	android:versionName
 		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:23:5-30
 		INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:5-51
 	xmlns:android
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:20:11-69
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:19:11-69
 	android:versionCode
 		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:22:5-28
 		INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml
@@ -68,16 +70,22 @@ uses-permission#android.permission.ACCESS_FINE_LOCATION
 ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:37:5-78
 	android:name
 		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:37:22-76
+uses-permission#android.permission.BLUETOOTH_PRIVILEGED
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:38:5-39:47
+	tools:ignore
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:39:9-44
+	android:name
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:38:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:38:5-80
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:40:5-80
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:38:22-78
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:40:22-78
 uses-feature#android.hardware.location.gps
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:39:5-65
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:41:5-65
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:39:19-63
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:41:19-63
 application
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:42:5-55:19
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:44:5-57:19
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\80f0739a428115175855a9b9bb2a03d6\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\80f0739a428115175855a9b9bb2a03d6\AndroidManifest.xml:22:5-20
 MERGED from [androidx.core:core:1.2.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\ddd8562d83922ef9ea9524cb070a2975\AndroidManifest.xml:24:5-89
@@ -87,39 +95,39 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\AC
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.2.0] C:\Users\ACER\AppData\Local\Android\Sdk\gradle-7.2-all\gradle-7.2\bin\caches\transforms-2\files-2.1\ddd8562d83922ef9ea9524cb070a2975\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:42:18-50
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:44:18-50
 	android:icon
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:43:9-45
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:45:9-45
 	android:theme
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:44:9-65
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:46:9-70
 activity#com.example.android.bluetoothlegatt.DeviceScanActivity
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:45:9-52:20
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:47:9-54:20
 	android:label
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:46:13-45
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:48:13-45
 	android:exported
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:47:13-36
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:49:13-36
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:45:19-53
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:47:19-53
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:48:13-51:29
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:50:13-53:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:49:17-68
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:51:17-68
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:49:25-66
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:51:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:50:17-76
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:52:17-76
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:50:27-74
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:52:27-74
 activity#com.example.android.bluetoothlegatt.DeviceControlActivity
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:53:9-58
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:55:9-58
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:53:19-56
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:55:19-56
 service#com.example.android.bluetoothlegatt.BluetoothLeService
-ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:54:9-77
+ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:56:9-77
 	android:enabled
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:54:53-75
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:56:53-75
 	android:name
-		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:54:18-52
+		ADDED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml:56:18-52
 uses-sdk
 INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\ACER\Downloads\connectivity-samples-master\BluetoothLeGatt\Application\src\main\AndroidManifest.xml

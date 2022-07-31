@@ -6,11 +6,11 @@
                 {
                     "source": "C:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
                     "from": {
-                        "startLines": "20,-1",
-                        "startColumns": "4,-1",
-                        "startOffsets": "716,-1",
-                        "endColumns": "80,-1",
-                        "endOffsets": "792,-1"
+                        "startLines": "20,19",
+                        "startColumns": "4,4",
+                        "startOffsets": "716,650",
+                        "endColumns": "80,65",
+                        "endOffsets": "792,711"
                     },
                     "to": {
                         "startLines": "2,3",
