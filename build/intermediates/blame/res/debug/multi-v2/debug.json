@@ -1024,6 +1024,21 @@
             ]
         },
         {
+            "outputFile": "C:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\build\\intermediates\\res\\merged\\debug\\values-v18_values-v18.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\ACER\\AppData\\Local\\Android\\Sdk\\gradle-7.2-all\\gradle-7.2\\bin\\caches\\transforms-2\\files-2.1\\6f5d82f71dff9dab60ae6f6aee6a87d7\\res\\values-v18\\values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\build\\intermediates\\res\\merged\\debug\\values-hi_values-hi.arsc.flat",
             "map": [
                 {
@@ -1051,21 +1066,6 @@
                         "startOffsets": "2868",
                         "endColumns": "100",
                         "endOffsets": "2964"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\build\\intermediates\\res\\merged\\debug\\values-v18_values-v18.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\ACER\\AppData\\Local\\Android\\Sdk\\gradle-7.2-all\\gradle-7.2\\bin\\caches\\transforms-2\\files-2.1\\6f5d82f71dff9dab60ae6f6aee6a87d7\\res\\values-v18\\values-v18.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "48",
-                        "endOffsets": "99"
                     }
                 }
             ]

@@ -1754,6 +1754,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout actionbar_indeterminate_progress
+layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
