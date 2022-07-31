@@ -6,18 +6,18 @@
                 {
                     "source": "C:\\Users\\ACER\\Downloads\\connectivity-samples-master\\BluetoothLeGatt\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
                     "from": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "650",
-                        "endColumns": "65",
-                        "endOffsets": "711"
+                        "startLines": "20,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "716,-1",
+                        "endColumns": "80,-1",
+                        "endOffsets": "792,-1"
                     },
                     "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "64",
-                        "endOffsets": "115"
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,136",
+                        "endColumns": "80,64",
+                        "endOffsets": "131,196"
                     }
                 }
             ]

@@ -17,11 +17,12 @@
 package com.example.android.bluetoothlegatt;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
@@ -37,9 +38,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,27 +52,33 @@ import java.util.List;
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
  */
-public class DeviceScanActivity extends ListActivity {
+public class DeviceScanActivity extends AppCompatActivity {
     private LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning;
     private Handler mHandler;
     private static int PERMISSION_REQUEST_CODE = 1;
     private final static String TAG = DeviceScanActivity.class.getSimpleName();
-    private static final int REQUEST_ENABLE_BT = 1;
+    private static final int REQUEST_ENABLE_BT = 10;
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 10000;
+    private static final long SCAN_PERIOD = 100000;
+    public static final int PERMISSION_ASK = 1001;
+
+    private static final String[] BLE_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
+    private static final int PERMISSION_REQUEST_CAMERA = 2;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Request Location Permissions:");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_REQUEST_CODE);
         }
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle(R.string.title_devices);
+//        getActionBar().setTitle(R.string.title_devices);
         mHandler = new Handler();
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
@@ -89,24 +100,52 @@ public class DeviceScanActivity extends ListActivity {
             finish();
             return;
         }
+
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//                    requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT), PERMISSION_REQUEST_CODE)
+//                } else {
+//                    requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_CODE)
+//                }
+//            } else {
+//                requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), PERMISSION_REQUEST_CODE)
+//            }
+//        }
+
+//        showCameraPreview();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
-    {
-        if(requestCode == PERMISSION_REQUEST_CODE)
-        {
-            //Do something based on grantResults
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
-                Log.d(TAG, "coarse location permission granted");
-            }
-            else
-            {
-                Log.d(TAG, "coarse location permission denied");
-            }
-        }
-    }
+
+
+//    private String[] getRequiredPermissions() {
+//        int targetSdkVersion = getApplicationInfo().targetSdkVersion;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && targetSdkVersion >= Build.VERSION_CODES.S) {
+//            return new String[]{Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT};
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && targetSdkVersion >= Build.VERSION_CODES.Q) {
+//            return new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
+//        } else return new String[]{Manifest.permission.ACCESS_COARSE_LOCATION};
+//    }
+
+//    private static final String[] BLE_PERMISSIONS = new String[]{
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//    };
+//
+//    private static final String[] ANDROID_12_BLE_PERMISSIONS = new String[]{
+//            Manifest.permission.BLUETOOTH_SCAN,
+//            Manifest.permission.BLUETOOTH_CONNECT,
+//            Manifest.permission.ACCESS_FINE_LOCATION,
+//    };
+//
+//    public static void requestBlePermissions(Activity activity, int requestCode) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+//            ActivityCompat.requestPermissions(activity, ANDROID_12_BLE_PERMISSIONS, requestCode);
+//        else
+//            ActivityCompat.requestPermissions(activity, BLE_PERMISSIONS, requestCode);
+//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,7 +167,7 @@ public class DeviceScanActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_scan:
-                mLeDeviceListAdapter.clear();
+//                mLeDeviceListAdapter.clear();
                 scanLeDevice(true);
                 break;
             case R.id.menu_stop:
@@ -138,21 +177,82 @@ public class DeviceScanActivity extends ListActivity {
         return true;
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onResume() {
         super.onResume();
 
         // Ensures Bluetooth is enabled on the device.  If Bluetooth is not currently enabled,
         // fire an intent to display a dialog asking the user to grant permission to enable it.
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+
+//        if (!mBluetoothAdapter.isEnabled()) {
+//            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isBluetoothPermissionGranted()) {
+                // app already has required permissions
+                // do some task here
+                scanLeDevice(true);
+            } else {
+                // app does not have permission yet.
+                // ask for permissions
+                askForBluetoothPermissions();
+            }
+        } else {
+            // Android version below 6.0, no need to check or ask for permission
+            // do some task here
         }
 
         // Initializes list view adapter.
-        mLeDeviceListAdapter = new LeDeviceListAdapter();
-        setListAdapter(mLeDeviceListAdapter);
-        scanLeDevice(true);
+//        mLeDeviceListAdapter = new LeDeviceListAdapter();
+//        setListAdapter(mLeDeviceListAdapter);
+//        scanLeDevice(true);
+        isBluetoothPermissionGranted();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean isBluetoothPermissionGranted() {
+        boolean granted = false;
+        int bluetoothGranted = checkSelfPermission(Manifest.permission.BLUETOOTH);
+        int bluetoothAdminGranted = checkSelfPermission(Manifest.permission.BLUETOOTH_ADMIN);
+        int bluetoothScan = checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN);
+        int bluetoothConnect = checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT);
+
+        if (bluetoothGranted == PackageManager.PERMISSION_GRANTED &&
+                bluetoothAdminGranted == PackageManager.PERMISSION_GRANTED && bluetoothScan == PackageManager.PERMISSION_GRANTED && bluetoothConnect == PackageManager.PERMISSION_GRANTED) {
+            granted = true;
+        }
+
+        return granted;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void askForBluetoothPermissions() {
+        String[] permissions = new String[]{
+                Manifest.permission.BLUETOOTH,
+                Manifest.permission.BLUETOOTH_ADMIN,
+                Manifest.permission.BLUETOOTH_SCAN,
+                Manifest.permission.BLUETOOTH_CONNECT
+        };
+        requestPermissions(permissions, PERMISSION_ASK);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_ASK:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    scanLeDevice(true);
+                } else {
+                    // permissions not granted
+                    // DO NOT PERFORM THE TASK, it will fail/crash
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
+        }
     }
 
     @Override
@@ -168,49 +268,60 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        scanLeDevice(false);
-        mLeDeviceListAdapter.clear();
+//        scanLeDevice(false);
+//        mLeDeviceListAdapter.clear();
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
-        if (device == null) return;
-        final Intent intent = new Intent(this, DeviceControlActivity.class);
-        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-        if (mScanning) {
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
-            mScanning = false;
-        }
-        startActivity(intent);
-    }
+//    @Override
+//    protected void onListItemClick(ListView l, View v, int position, long id) {
+//        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
+//        if (device == null) return;
+//        final Intent intent = new Intent(this, DeviceControlActivity.class);
+//        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+//        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+//        if (mScanning) {
+////            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+//            mScanning = false;
+//        }
+//        startActivity(intent);
+//    }
 
+    @SuppressLint("MissingPermission")
     private void scanLeDevice(final boolean enable) {
+        final BluetoothLeScanner bluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
+
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void run() {
                     mScanning = false;
-                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                    invalidateOptionsMenu();
+                    bluetoothLeScanner.stopScan(mLeScanCallback);
                 }
             }, SCAN_PERIOD);
-
             mScanning = true;
-            mBluetoothAdapter.startLeScan(mLeScanCallback);
+            bluetoothLeScanner.startScan(mLeScanCallback);
         } else {
             mScanning = false;
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            bluetoothLeScanner.stopScan(mLeScanCallback);
         }
+
         invalidateOptionsMenu();
     }
 
     private ScanCallback mLeScanCallback = new ScanCallback() {
         @Override
-        public void onScanResult(int callbackType, ScanResult result) {
+        public void onScanResult(int callbackType, final ScanResult result) {
             super.onScanResult(callbackType, result);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "STart" + result.getDevice(), Toast.LENGTH_LONG).show();
+//                    mLeDeviceListAdapter.addDevice(result);
+//                    mLeDeviceListAdapter.notifyDataSetChanged();
+                }
+            });
         }
 
         @Override
@@ -221,6 +332,8 @@ public class DeviceScanActivity extends ListActivity {
         @Override
         public void onScanFailed(int errorCode) {
             super.onScanFailed(errorCode);
+            Log.d("SCanned Failed ", String.valueOf(errorCode));
+            Toast.makeText(getApplicationContext(), "onScanFailed"+String.valueOf(errorCode), Toast.LENGTH_LONG).show();
         }
     };
 
@@ -236,7 +349,7 @@ public class DeviceScanActivity extends ListActivity {
         }
 
         public void addDevice(BluetoothDevice device) {
-            if(!mLeDevices.contains(device)) {
+            if (!mLeDevices.contains(device)) {
                 mLeDevices.add(device);
             }
         }
@@ -279,7 +392,7 @@ public class DeviceScanActivity extends ListActivity {
             }
 
             BluetoothDevice device = mLeDevices.get(i);
-            final String deviceName = device.getName();
+            @SuppressLint("MissingPermission") final String deviceName = device.getName();
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
@@ -290,21 +403,21 @@ public class DeviceScanActivity extends ListActivity {
         }
     }
 
-    // Device scan callback.
-    private BluetoothAdapter.LeScanCallback mLeScanCallback =
-            new BluetoothAdapter.LeScanCallback() {
-
-        @Override
-        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mLeDeviceListAdapter.addDevice(device);
-                    mLeDeviceListAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-    };
+//    // Device scan callback.
+//    private BluetoothAdapter.LeScanCallback mLeScanCallback =
+//            new BluetoothAdapter.LeScanCallback() {
+//
+//        @Override
+//        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    mLeDeviceListAdapter.addDevice(device);
+//                    mLeDeviceListAdapter.notifyDataSetChanged();
+//                }
+//            });
+//        }
+//    };
 
     static class ViewHolder {
         TextView deviceName;
