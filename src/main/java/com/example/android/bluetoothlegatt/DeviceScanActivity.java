@@ -206,7 +206,8 @@ public class DeviceScanActivity extends AppCompatActivity {
 //        mLeDeviceListAdapter = new LeDeviceListAdapter();
 //        setListAdapter(mLeDeviceListAdapter);
 //        scanLeDevice(true);
-        isBluetoothPermissionGranted();
+//        isBluetoothPermissionGranted();
+        scanLeDevice(true);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
